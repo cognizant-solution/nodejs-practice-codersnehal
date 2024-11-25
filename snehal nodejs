@@ -1,0 +1,117 @@
+1) Create a NodeJS application with a basic function to route to two different pages one as the Home page and next About page
+
+const express = require("express");
+const app = express();
+const port = 3000;
+
+// Route for Home page
+app.get("/", (req, res) => {
+  res.send("<h1>Home Page</h1><p>Welcome to the Home Page!</p>");
+});
+
+// Route for About page
+app.get("/about", (req, res) => {
+  res.send("<h1>About Page</h1><p>This is the About Page.</p>");
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:3000`);
+});
+
+
+2) Create a component called App that displays the number of times the user has hovered a button with the text “Hover Me”. The count should be displayed in an h1 element and updated each time the user hovers over the button. The initial value of the count should be set to 0.
+
+import React, { useState } from 'react';
+
+const App = () => {
+  const [hoverCount, setHoverCount] = useState(0);
+
+  const handleMouseOver = () => {
+    setHoverCount(hoverCount + 1);
+  };
+
+  return (
+    <div>
+      <h1>Hover Count: {hoverCount}</h1>
+      <button onMouseOver={handleMouseOver}>Hover Me</button>
+    </div>
+  );
+};
+
+export default App;
+
+3) Create a component called Calc that can find the difference between the given two integer values.
+
+import React, { useState } from 'react';
+
+const Calc = () => {
+  const [num1, setNum1] = useState(0);
+  const [num2, setNum2] = useState(0);
+  const [difference, setDifference] = useState(0);
+
+  const handleNum1Change = (e) => {
+    setNum1(parseInt(e.target.value, 10));
+  };
+
+  const handleNum2Change = (e) => {
+    setNum2(parseInt(e.target.value, 10));
+  };
+
+  const calculateDifference = () => {
+    setDifference(num1 - num2);
+  };
+
+  return (
+    <div>
+      <input type="number" value={num1} onChange={handleNum1Change} placeholder="Enter first number" />
+      <input type="number" value={num2} onChange={handleNum2Change} placeholder="Enter second number" />
+      <button onClick={calculateDifference}>Calculate Difference</button>
+      <h1>Difference: {difference}</h1>
+    </div>
+  );
+};
+
+export default Calc;
+
+4) Create an application that holds three radio buttons with labels as SQL, Python and NodeJS group them to form into a group called as Technologies.
+Allow the user to select any one of the radio button and display the selected technology
+
+import React, { useState } from 'react';
+
+const App = () => {
+  const [selectedTech, setSelectedTech] = useState('');
+
+  const handleChange = (e) => {
+    setSelectedTech(e.target.value);
+  };
+
+  return (
+    <div>
+      <h1>Select a Technology</h1>
+      <div onChange={handleChange}>
+        <input type="radio" value="SQL" name="technology" /> SQL
+        <input type="radio" value="Python" name="technology" /> Python
+        <input type="radio" value="NodeJS" name="technology" /> NodeJS
+      </div>
+      <h2>Selected Technology: {selectedTech}</h2>
+    </div>
+  );
+};
+
+export default App;
+
+5) Create an application to display the host OS name and the uptime.
+
+const os = require('os');
+
+const getOSInfo = () => {
+  const osName = os.type();
+  const uptime = os.uptime();
+
+  console.log(`Host OS Name: ${osName}`);
+  console.log(`Uptime: ${uptime} seconds`);
+};
+
+getOSInfo();
+
